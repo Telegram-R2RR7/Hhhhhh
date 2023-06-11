@@ -1,54 +1,120 @@
-<!-- JwPlayer -->
-<script src="https://ssl.p.jwpcdn.com/player/v/8.18.4/jwplayer.js"> </script>
-<script type="text/javascript">jwplayer.key = "W7zSm81+mmIsg7F+fyHRKhF3ggLkTqtGMhvI92kbqf/ysE99";</script>
-<style type="text/css" media="screen">html,body{padding:0;margin:0;height:100%}#megaplay{width:100%!important;height:100%!important;overflow:hidden;background-color:#000}</style>
-<div id="megaplay"></div>
-<script type="text/javascript">
-var player = jwplayer("megaplay");
-player.setup({
-sources: [{
-"file": "http://live.alfajertv.com:2052/hls/ftv1/chunklist_w1268899779.m3u8",
-"type": "video\/mp4",
-"label": "1080p"},{
-"file": "رابط لو فيديو mp4",
-"type": "video\/mp4",
-"label": "720p"}], 
-aspectratio: "16:9",
-startparam: "start",
-primary: "html5",
-autostart: true,
-preload: "auto",
-image: "",
-advertising: {
-client: "vast",
-tag: ""},
-skin: {
-name: "megaplay"},
-logo: {
-file: "لوغو هنا "},
-captions: {
-color: "#f3f368",
-fontSize: 16,
-backgroundOpacity: 0,
-fontfamily: "Helvetica",
-edgeStyle: "raised"},
-tracks: [{
-file: "",
-label: "Español",
-kind: "captions"
-}, ]
-});
-setTimeout(function() {
-        $("#loader").delay(1000).fadeOut("slow");
-        $("#loader-wrapper").delay(1500).fadeOut("slow")
-    }, 2000);
-player.on("setupError", function() {
-swal("Server Error!", "Please contact us to fix it asap. Thank you!", "error")
-});
-player.on("error", function() {
-swal("Server Error!", "Please contact us to fix it asap. Thank you!", "error")
-});
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style>
+    video {
+      width: 100%;
+      height: auto;
+      outline: none;
+    }
+    .video-player {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      background-color: #000;
+      color: #fff;
+    }
+    .video-controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      background-color: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+    .video-controls button {
+      margin: 0 5px;
+      background-color: transparent;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+    .video-progress {
+      position: relative;
+      height: 5px;
+      width: 100%;
+      background-color: rgba(255,255,255,0.5);
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .video-progress-bar {
+      position: absolute;
+      height: 100%;
+      width: 0%;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    .video-progress-bar:hover {
+      background-color: #f00;
+    }
+    .video-quality {
+      margin-right: 10px;
+    }
+    .video-speed {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="video-player">
+    <video controls>
+    هنا لو نوع الرابط mp4
+        <source src="###" type="video/mp4" headers="User-Agent: هنا اليوزر اجينت" referrerpolicy="هنا الريفير">
+      هنا لو نوع الرابط m3u8 
+      <source src="http://ghostiptv.vip:80/live/admin910/8888/47631.m3u8" type="application/x-mpegURL" headers="User-Agent:هنا اليوزر اجينت" referrerpolicy="">
+     هنا لو نوع الرابط ts 
+       <source src="###" type="video/MP2T" headers="User-Agent: هنا اليوزر اجينت" referrerpolicy="هنا الريفير">
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-controls">
+      <div class="video-progress">
+        <div class="video-progress-bar"></div>
+      </div>
+      <div class="video-quality">
+        <select name="quality">
+          <option value="360">360p</option>
+          <option value="480">480p</option>
+          <option value="720">720p</option>
+          <option value="1080">1080p</option>
+        </select>
+      </div>
+      <div class="video-speed">
+        <button class="btn-speed" data-speed="0.5">0.5x</button>
+        <button class="btn-speed" data-speed="1">1x</button>
+        <button class="btn-speed" data-speed="1.5">1.5x</button>
+        <button class="btn-speed" data-speed="2">2x</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    var video = document.querySelector('video');
+    var progress = document.querySelector('.video-progress-bar');
+    var speedBtn= document.querySelectorAll('.btn-speed');
+    var qualitySelect = document.querySelector('select[name="quality"]');
+    var videoSrc = document.querySelectorAll('source');
+
+    // Update video source when quality changes
+    qualitySelect.addEventListener('change', function() {
+      var selectedQuality = this.value;
+      for (var i = 0; i < videoSrc.length; i++) {
+        var src = videoSrc[i].src.split('.');
+        var ext = src[src.length - 1];
+        videoSrc[i].src = 'video_' + selectedQuality + '.' + ext;
+      }
 </script>
-<script src='https://cdn.jsdelivr.net/gh/da2l/host@1/dist/js/wgd-core.min.js'></script>
 </body>
 </html>
+
+
+
+
+
